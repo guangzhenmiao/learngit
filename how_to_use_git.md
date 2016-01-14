@@ -153,7 +153,7 @@ Key文本框的内容 即为刚才id_rsa.pub文件里的所有内容(可以使�
 
 如图所示
 
-    ![github_add_respo](http://ww1.sinaimg.cn/large/40c685fcjw1ezyvaag19nj208m049jrq.jpg "github_add_respo")
+   ![github_add_respo](http://ww1.sinaimg.cn/large/40c685fcjw1ezyvaag19nj208m049jrq.jpg      "github_add_respo")
 
 在**Repository name**处填入库名即可。
 最后点击 Create respository 完成远程库的创建。
