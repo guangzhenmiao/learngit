@@ -119,4 +119,70 @@ commit ID 不必完全写全 只要前几位 有区分度就可以了 **git**会
   </pre>
 
 
+###删除文件###
+在git中， 删除也是一个修改操作。
+
+如果 我们已经提交了某个文件 并且在工作区使用 rm 命令 将文件删除了
+那么我们可以使用 git rm <file> 命令将文件从版本库删除 并且commit.
+如果是本地误删除 我们可以使用checkout 命令将文件恢复。
+
+
+## 远程仓库 ##
+
+只要注册一个**github**账号， 就可以免费获得git远程仓库。
+
+由于本地git仓库和github仓库之前传输是是通过SSH加密的， 所以首先需要进行一些设置。
+[1]. 创建SSH Key。<pre>
+     使用命令 ssh-keygen -t -C "myemail@aa.com"
+     </pre>
+可以一路回车 免密码设置。如果设置完成 可以在用户主目录里找到.ssh目录。里面有id_rsa和id_rsa.pub两个文件。这两个是SSH Key对应的密钥对。id_isa是私钥， id_rsa.pub是公钥，可以告知任何人、网站。
+
+[2]. 登录github,点击如图所示的操作(站点UI等内容可能会发生变化)
+
+![github_add_ssh](http://ww4.sinaimg.cn/large/40c685fcjw1ezyuxklowmj20a80bbdgp.jpg "github_add_ssh")
+
+然后再点击SSH keys--> Add SSH key
+
+然后填写Title框 和Key文本框即可
+Title框的内容 可自行填写
+Key文本框的内容 即为刚才id_rsa.pub文件里的所有内容(可以使用notepad++打开) 粘贴即可。
+
+注释： github需要识别推送内容的作者，防止冒充。github免费托管git库，任何人都可以看到(仅有授权用户可以更改)。
+
+###添加远程仓库### 
+
+如图所示
+
+    ![github_add_respo](http://ww1.sinaimg.cn/large/40c685fcjw1ezyvaag19nj208m049jrq.jpg "github_add_respo")
+
+在**Repository name**处填入库名即可。
+最后点击 Create respository 完成远程库的创建。
+
+假定 我们在刚才创建了learngit的远程仓库。那么就可以向远程仓库进行关联并推送了。
+
+可以使用如下命令进行关联：
+
+$ git remote add origin git@github.com:github账户名/learngit.git
+
+添加后 ， 远程库的名字就是origin ， 这是git的默认叫法。
+
+关联后， 使用git push -u origin master 进行推送(如无问题，那么github上就会有本地库的内容了，是为完成) 。
+
+注释： 在进行第一次使用git的clone或者push命令时 会得到一个警告
+
+The authenticity of host 'github.com (xx.xx.xx.xx)' can't be established.
+RSA key fingerprint is xx.xx.xx.xx.xx.
+Are you sure you want to continue connecting (yes/no)?
+
+指纹信息(fingerprint) 如担心冒充 可以自行比对[github网站的RSA Key的指纹信息](https://help.github.com/articles/what-are-github-s-ssh-key-fingerprints/ "github_rsa_fingerprint")
+
+这是因为ssh连接在第一次验证github网站的key时，需要你确认github的key来自github服务器。如验证无误 输入yes即可
+
+这时 git会输出一个警告，告诉你已经把github的key添加到本机的一个信任列表里了。
+
+次警告只出现一次，后面的操作就不会再次警告了。
+
+暂时记录到这里。
+
+
 
